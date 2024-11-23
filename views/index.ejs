@@ -1,20 +1,42 @@
 <div class="author">
 
-    <ul>
-        <li>
+    <!-- <ul class="ulItem">
+        <li class="liItem">
             <a href="/biology" class="">BIOLOGY</a>
-        </li>
-        <li>
+        </li >
+        <li class="liItem">
             <a href="/physics" class="">PHYSICS</a>
         </li>
-        <li>
+        <li class="liItem">
             <a href="/robotics" class="">ROBOTICS</a>
         </li>
-        <li>
+        <li class="liItem">
             <a href="/chemistry" class="">CHEMISTRY</a>
         </li>
+    </ul> -->
+
+    <ul class="ulItem">
+        <% data.forEach(item => { %>
+            <li class="liItem">
+                <a href="/borrow/<%=item._id%>">
+                    <span><%=item.title%></span>
+                    <span class="availability <%= item.borrowed ? 'in-use' : 'available' %>"><%= item.borrowed ? "Unavailable" : "Available" %></span>
+                    <img src="<%= item.image %>" alt="<%= item.title %>">
+                </a>
+            </li>
+        <% }) %>
     </ul>
 
-    <h1 class="author__heading">ORDER NOW</h1>
+    <% if (prevPage !== null) { %>
+        <a class="pagination" href="/?page=<%= prevPage %>">&it;&#60;</a>
+    <% } %>
+    <a class="pagination" href="/?page=<%=current%>"><%= current %></a>
+    <% if (nextPage !== null) { %>
+        <a class="pagination" href="/?page=<%= nextPage %>">&it;&#62;</a>
+    <% } %>
+
+
+
+
     <p class="author__body">be careful with the equipment blablabla</p>
 </div>

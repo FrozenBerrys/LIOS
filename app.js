@@ -1,10 +1,15 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const expressLayout = require('express-ejs-layouts');
+const connectDB = require('./server/config/db');
+require('dotenv').config();
 
 const app = express();
 
 const PORT = process.env.PORT || 8000 ;
+
+//connect to DB
+connectDB();
 
 //middleware
 app.use(express.static('public')); // serving static files via express

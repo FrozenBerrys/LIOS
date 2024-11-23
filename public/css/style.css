@@ -89,6 +89,7 @@ body {
     display: flex;
     justify-content: center;
     grid-area: button;
+    font-weight: bold;
   }
 
 .header__button button {
@@ -294,4 +295,104 @@ a {
 .login {
   display:flex;
   /* needs some work */
+}
+
+/* FOR THE ITEMS */
+
+/* Container for the list */
+.ulItem {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 3 items per row on large screens */
+  gap: 20px; /* Space between items */
+  list-style-type: none;
+  padding: 20px;
+}
+
+/* Individual list items */
+.ulItem .liItem {
+  background-color: white;
+  border: 2px solid #ddd; /* Light grey border */
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* Ensures image and content stay inside the border */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for list items COOL EFFECT WHEN HOVERING*/
+.ulItem .liItem:hover {
+  transform: translateY(-5px); /* Lift the item slightly */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+/* Image styling */
+.ulItem .liItem img {
+  width: 100%; /* Take up all available width */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure image covers the area without distortion */
+  max-height: 200px; /* Optional: Limit the height of the image */
+  border-radius: 8px; /* Rounded corners for the image */
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Title and status styling */
+.ulItem .liItem span {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--blue);
+}
+
+ul li .availability.available {
+  background-color: green;
+  color: white; 
+}
+
+.availability {
+  font-size: 0.9rem;
+  padding: 5px 10px; /* Padding for better visibility */
+  border-radius: 5px; /* Rounded corners for the box */
+}
+
+ul li .availability.in-use {
+  background-color: red;
+  color: white; 
+}
+
+/* Status text styling (In Use / Available) */
+.ulItem .li span:last-child {
+  font-size: 0.9rem;
+  color: #007BFF; /* Blue color for status */
+}
+
+/* Responsive Design: 1 item per row on smaller screens */
+@media (max-width: 768px) {
+  ul {
+      grid-template-columns: 1fr; /* Single column layout */
+  }
+}
+
+/* Responsive Design: 2 items per row on medium screens (e.g., tablets) */
+@media (max-width: 1024px) {
+  ul {
+      grid-template-columns: repeat(2, 1fr); /* 2 items per row on medium screens */
+  }
+}
+
+
+.pagination {
+  background-color: var(--yellow);
+  color:var(--blue);
+  font-weight: bold;
+  border: 2px solid var(--yellow); /* Light grey border */
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* Ensures content stays inside the border */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 10px 20px; /* Padding inside the box */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: fit-content; /* Adjust width to content */
+  margin: 20px auto; /* Center the pagination box horizontally */
 }
