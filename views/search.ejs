@@ -1,0 +1,25 @@
+<div class="author">
+    <h1>Search Results for <%=searchNoSpecialChar%></h1>
+</div>
+
+<ul class="ulItem">
+    <% data.forEach(data => { %>
+    <a href="/item/<%= data._id %>">
+        <li class="liItem">
+            <span><%= data.title %></span>
+            <span class="subject 
+                <%= data.subject === 'Robotics' ? 'robotics' : '' %>
+                <%= data.subject === 'Chemistry' ? 'chemistry' : '' %>
+                <%= data.subject === 'Biology' ? 'biology' : '' %>
+                <%= data.subject === 'Physics' ? 'physics' : '' %>
+            ">
+                <%= data.subject %>
+            </span>
+            <img src="<%= data.image %>" alt="<%= data.title %>">
+            <span class="availability <%= data.borrowed ? 'in-use' : 'available' %>">
+                <%= data.borrowed ? "Unavailable" : "Available" %>
+            </span>
+        </li>
+    </a>
+    <% }) %>
+</ul>

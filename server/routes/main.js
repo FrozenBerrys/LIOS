@@ -36,54 +36,49 @@ router.get('', async (req,res)=>{
 })
 
 
+//GET ITEM
+router.get('/item/:id', async (req,res)=>{
+    try{
+        let slug = req.params.id;
+        const data = await Item.findById({_id: slug});
 
-
-
-
-router.get('/biology', async (req,res)=>{
+        const locals = {
+            title: data.title,
+        } // sending locals. as data to dynamically load into the layout 
+    
+        
+        res.render("item", { 
+            locals, 
+            data,
+        });
+    } catch(error){
+        console.log(error);
+    }
+})
+/*POST*/
+router.post('/search', async (req,res)=>{
     try {
         const locals = {
-            title: "biology",
+            title: "search",
         }
-        res.render("biology", { locals });
+
+        let searchTerm = req.body.searchTerm;
+        const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9\s]/g, "");
+
+
+        const data = await Item.find({
+            $or: [
+                {title: { $regex: new RegExp(searchNoSpecialChar, "i")} },
+                {subject: { $regex: new RegExp(searchNoSpecialChar, "i")} }
+            ]
+        })
+
+        res.render("search", { data, locals, searchNoSpecialChar });
+
     } catch (error) {
-        console.log("Error");
+        console.log(error);
     }
 });
-
-router.get('/chemistry', async (req,res)=>{
-    try {
-        const locals = {
-            title: "chemistry",
-        }
-        res.render("chemistry", { locals });
-    } catch (error) {
-        console.log("Error");
-    }
-});
-
-router.get('/robotics', async (req,res)=>{
-    try {
-        const locals = {
-            title: "robotics",
-        }
-        res.render("robotics", { locals });
-    } catch (error) {
-        console.log("Error");
-    }
-});
-
-router.get('/physics', async (req,res)=>{
-    try {
-        const locals = {
-            title: "physics",
-        }
-        res.render("physics", { locals });
-    } catch (error) {
-        console.log("Error");
-    }
-});
-
 
 
 

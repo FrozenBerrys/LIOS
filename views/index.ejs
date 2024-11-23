@@ -1,29 +1,23 @@
 <div class="author">
-
-    <!-- <ul class="ulItem">
-        <li class="liItem">
-            <a href="/biology" class="">BIOLOGY</a>
-        </li >
-        <li class="liItem">
-            <a href="/physics" class="">PHYSICS</a>
-        </li>
-        <li class="liItem">
-            <a href="/robotics" class="">ROBOTICS</a>
-        </li>
-        <li class="liItem">
-            <a href="/chemistry" class="">CHEMISTRY</a>
-        </li>
-    </ul> -->
-
     <ul class="ulItem">
         <% data.forEach(item => { %>
+        <a href="/item/<%= item._id %>">
             <li class="liItem">
-                <a href="/borrow/<%=item._id%>">
-                    <span><%=item.title%></span>
-                    <span class="availability <%= item.borrowed ? 'in-use' : 'available' %>"><%= item.borrowed ? "Unavailable" : "Available" %></span>
-                    <img src="<%= item.image %>" alt="<%= item.title %>">
-                </a>
+                <span><%= item.title %></span>
+                <span class="subject 
+                    <%= item.subject === 'Robotics' ? 'robotics' : '' %>
+                    <%= item.subject === 'Chemistry' ? 'chemistry' : '' %>
+                    <%= item.subject === 'Biology' ? 'biology' : '' %>
+                    <%= item.subject === 'Physics' ? 'physics' : '' %>
+                ">
+                    <%= item.subject %>
+                </span>
+                <img src="<%= item.image %>" alt="<%= item.title %>">
+                <span class="availability <%= item.borrowed ? 'in-use' : 'available' %>">
+                    <%= item.borrowed ? "Unavailable" : "Available" %>
+                </span>
             </li>
+        </a>
         <% }) %>
     </ul>
 

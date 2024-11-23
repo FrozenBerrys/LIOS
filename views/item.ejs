@@ -1,0 +1,7 @@
+<div>
+    <div>
+        <span><%=data.title%></span>
+                    <span class="availability <%= data.borrowed ? 'in-use' : 'available' %>"><%= data.borrowed ? "Unavailable" : "Available" %></span>
+                    <img src="<%= data.image %>" alt="<%= data.title %>">
+    </div>
+</div>

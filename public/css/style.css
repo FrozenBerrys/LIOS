@@ -154,6 +154,8 @@ body {
 } */
 
 /* Dashboard Admin */
+
+
 .admin-title {
   display: flex;
   justify-content: space-between;
@@ -205,82 +207,6 @@ body {
 
 .footerlink a:hover {
   color:var(--red);
-}
-
-
-/* Home Article List */
-.articles__heading {
-  margin-top: 4rem;
-  font-weight: 400;
-}
-
-
-
-.article-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  font-size: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
-  display: flex;
-  flex-direction: column;
-}
-
-.article-list__date {
-  font-size: 1rem;
-  color: var(--white);
-  width: 100px;
-  display: inline-block;
-  width: 260px;
-}
-
-.article-ul li a {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-decoration: none;
-  margin: 18px 0;
-}
-
-@media only screen and (min-width: 768px) {
-  .article-ul li a {
-    flex-direction: row;
-    align-items: center;
-    text-decoration: none;
-    color: var(--white);
-  }
-
-  .article-list__date {
-    text-align: right;
-  }
-}
-
-.article-ul li {
-  font-size: 24px;
-  cursor: pointer;
-  transition: filter 0.1s;
-
-}
-
-/* .article-ul li:not(:last-child) {
-  border-bottom: 1px solid var(--red);
-} */
-
-.article-ul li:hover {
-    border:white, solid, 2px;
-    border-radius: var(--border-radius);
-}
-
-.article {
-  white-space: pre-wrap;
-  color: var(--white);
-}
-
-.faq__list {
-  list-style-type: none;
-}
-
-.faq__title {
-  color:var(--white);
 }
 
 p {
@@ -346,8 +272,13 @@ a {
   color: var(--blue);
 }
 
-ul li .availability.available {
+.ulItem .liItem .availability.available {
   background-color: green;
+  color: white; 
+}
+
+.ulItem .liItem .availability.in-use {
+  background-color: red;
   color: white; 
 }
 
@@ -357,16 +288,31 @@ ul li .availability.available {
   border-radius: 5px; /* Rounded corners for the box */
 }
 
-ul li .availability.in-use {
-  background-color: red;
-  color: white; 
+.ulItem .liItem .subject {
+  font-size: 0.9rem;
+  padding: 5px 10px; /* Padding for better visibility */
+  border-radius: 5px; /* Rounded corners for the box */
+  color: white
 }
 
-/* Status text styling (In Use / Available) */
-.ulItem .li span:last-child {
-  font-size: 0.9rem;
-  color: #007BFF; /* Blue color for status */
+.ulItem .liItem .subject.physics {
+  background-color: blue
 }
+
+.ulItem .liItem .subject.robotics {
+  background-color: grey;
+}
+
+.ulItem .liItem .subject.biology {
+  background-color: rgb(18, 184, 10)
+}
+
+.ulItem .liItem .subject.chemistry {
+  background-color: lightseagreen;
+}
+
+
+
 
 /* Responsive Design: 1 item per row on smaller screens */
 @media (max-width: 768px) {
@@ -396,3 +342,8 @@ ul li .availability.in-use {
   width: fit-content; /* Adjust width to content */
   margin: 20px auto; /* Center the pagination box horizontally */
 }
+
+
+
+
+
