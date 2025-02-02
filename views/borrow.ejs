@@ -1,0 +1,7 @@
+<ul>
+    <% borrowHistory.forEach(entry => { %>
+        <li>
+            <%= entry.user_id.name %> borrowed <%= entry.quantity_borrowed %> <%= entry.item_id.title %> on <%= entry.borrowed_at.toLocaleDateString() %>.
+        </li>
+    <% }) %>
+</ul>

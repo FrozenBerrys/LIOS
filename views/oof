@@ -1,0 +1,14 @@
+ <span><%= item.title %></span>
+                <span class="subject 
+                    <%= item.subject === 'Robotics' ? 'robotics' : '' %>
+                    <%= item.subject === 'Chemistry' ? 'chemistry' : '' %>
+                    <%= item.subject === 'Biology' ? 'biology' : '' %>
+                    <%= item.subject === 'Physics' ? 'physics' : '' %>
+                ">
+                    <%= item.subject %>
+                </span>
+                <img src="<%= item.image %>" alt="<%= item.title %>">
+                <span class="availability <%= item.quantity === 0 ? 'unavailable' : 'available' %>">
+                    <%= item.quantity === 0 ? "Unavailable" : `${item.quantity} left` %>
+                </span>
+

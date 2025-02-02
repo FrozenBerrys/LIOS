@@ -9,7 +9,7 @@ router.get('', async (req,res)=>{
             title: "Hobby School Lab",
         } // sending locals. as data to dynamically load into the layout 
     
-        let perPage = 8;
+        let perPage = 16;
         let page = req.query.page || 1; //set default page query to 1
 
         const data = await Item.aggregate([{ $sort: { title: 1 }}])
@@ -28,7 +28,8 @@ router.get('', async (req,res)=>{
             data,
             current: page,
             nextPage: hasNextPage ? nextPage : null,
-            prevPage: hasPrevPage ? prevPage : null
+            prevPage: hasPrevPage ? prevPage : null,
+            isAuthenticated: req.cookies.token ? true : false
         });
     } catch(error){
         console.log(error);
@@ -50,6 +51,7 @@ router.get('/item/:id', async (req,res)=>{
         res.render("item", { 
             locals, 
             data,
+            isAuthenticated: req.cookies.token ? true : false
         });
     } catch(error){
         console.log(error);
@@ -73,7 +75,11 @@ router.post('/search', async (req,res)=>{
             ]
         })
 
-        res.render("search", { data, locals, searchNoSpecialChar });
+        res.render("search", { 
+            data,
+            locals, 
+            searchNoSpecialChar,
+            isAuthenticated: req.cookies.token ? true : false });
 
     } catch (error) {
         console.log(error);
@@ -85,17 +91,17 @@ router.post('/search', async (req,res)=>{
 
 
 
-function insertItemData (){
-    Item.insertMany([
-        {
-            title: "Scalpel",
-            borrowed: false,
-            subject: "Biology",
-            image: "https://i.postimg.cc/QtdbNL8b/scalpel.jpg"
-        },
-    ])
-}
-//insertItemData();
+// function insertItemData (){
+//     Item.insertMany([
+//         {
+//             title: "my dreams",
+//             quantity: 42,
+//             subject: "Biology",
+//             image: "https://i.postimg.cc/ZYBSd0MX/women.jpg"
+//         },
+//     ])
+// }
+// insertItemData();
 
 
 module.exports = router;

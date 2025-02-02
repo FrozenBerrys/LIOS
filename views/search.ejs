@@ -5,21 +5,21 @@
 <ul class="ulItem">
     <% data.forEach(data => { %>
     <a href="/item/<%= data._id %>">
-        <li class="liItem">
-            <span><%= data.title %></span>
-            <span class="subject 
-                <%= data.subject === 'Robotics' ? 'robotics' : '' %>
-                <%= data.subject === 'Chemistry' ? 'chemistry' : '' %>
-                <%= data.subject === 'Biology' ? 'biology' : '' %>
-                <%= data.subject === 'Physics' ? 'physics' : '' %>
-            ">
-                <%= data.subject %>
-            </span>
-            <img src="<%= data.image %>" alt="<%= data.title %>">
-            <span class="availability <%= data.borrowed ? 'in-use' : 'available' %>">
-                <%= data.borrowed ? "Unavailable" : "Available" %>
-            </span>
-        </li>
+        
+        <div class="item-container">
+            <div class="item-card">
+                <img src="<%= data.image %>" alt="<%= data.title %>" class="item-image">
+                <div class="item-details">
+                    <h3 class="item-title"><%= data.title %></h3>
+                    <span class="item-subject"><%= data.subject %></span>
+                    <span class="availability <%= data.quantity === 0 ? 'unavailable' : 'available' %>">
+                        <%= data.quantity === 0 ? "Unavailable" : `${data.quantity} left` %>
+                    </span>
+                    <button class="view-details-button" onclick="openModal('<%= data._id %>')">View Details</button>
+                </div>
+            </div>
+        </div>
+
     </a>
     <% }) %>
 </ul>

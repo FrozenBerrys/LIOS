@@ -1,23 +1,26 @@
 <div class="author">
     <ul class="ulItem">
         <% data.forEach(item => { %>
-        <a href="/item/<%= item._id %>">
-            <li class="liItem">
-                <span><%= item.title %></span>
-                <span class="subject 
-                    <%= item.subject === 'Robotics' ? 'robotics' : '' %>
-                    <%= item.subject === 'Chemistry' ? 'chemistry' : '' %>
-                    <%= item.subject === 'Biology' ? 'biology' : '' %>
-                    <%= item.subject === 'Physics' ? 'physics' : '' %>
-                ">
-                    <%= item.subject %>
-                </span>
-                <img src="<%= item.image %>" alt="<%= item.title %>">
-                <span class="availability <%= item.borrowed ? 'in-use' : 'available' %>">
-                    <%= item.borrowed ? "Unavailable" : "Available" %>
-                </span>
-            </li>
-        </a>
+            
+<a href="/item/<%= item._id %>">
+    <!-- <li class="liItem"> -->
+        
+        <div class="item-container">
+            <div class="item-card">
+                <img src="<%= item.image %>" alt="<%= item.title %>" class="item-image">
+                <div class="item-details">
+                    <h3 class="item-title"><%= item.title %></h3>
+                    <span class="item-subject"><%= item.subject %></span>
+                    <span class="availability <%= item.quantity === 0 ? 'unavailable' : 'available' %>">
+                        <%= item.quantity === 0 ? "Unavailable" : `${item.quantity} left` %>
+                    </span>
+                    <button class="view-details-button" onclick="openModal('<%= item._id %>')">View Details</button>
+                </div>
+            </div>
+        </div>
+
+    <!-- </li> -->
+</a>
         <% }) %>
     </ul>
 
@@ -28,9 +31,6 @@
     <% if (nextPage !== null) { %>
         <a class="pagination" href="/?page=<%= nextPage %>">&it;&#62;</a>
     <% } %>
-
-
-
 
     <p class="author__body">be careful with the equipment blablabla</p>
 </div>
